@@ -141,14 +141,14 @@ final class JalaliDate
      */
     public function fromGregorian(/* ... */): mixed
     {
-        return self::gregorianToJalali(\$gy, \$gm, \$gd);
+        return self::gregorianToJalali($gy, $gm, $gd);
     }
     /**
      * isLeap
      */
     public function isLeap(/* ... */): mixed
     {
-        return self::isLeapJalali(\$jy);
+        return self::isLeapJalali($jy);
     }
     /**
      * now
@@ -187,6 +187,6 @@ final class JalaliDate
      */
     public function toGregorian(/* ... */): mixed
     {
-        return self::jalaliToGregorian(\$this->year, \$this->month, \$this->day);
+        return self::jalaliToGregorian($this->year, $this->month, $this->day);
     }
 }

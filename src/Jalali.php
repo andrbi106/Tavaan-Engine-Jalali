@@ -24,14 +24,14 @@ final class Jalali
      */
     public function toGregorian(/* ... */): mixed
     {
-        return self::jalaliToGregorian(\$this->year, \$this->month, \$this->day);
+        return self::jalaliToGregorian($this->year, $this->month, $this->day);
     }
     /**
      * isLeap
      */
     public function isLeap(/* ... */): mixed
     {
-        return self::isLeapJalali(\$jy);
+        return self::isLeapJalali($jy);
     }
     /**
      * monthLength
