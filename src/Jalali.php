@@ -14,35 +14,35 @@ final class Jalali
     /**
      * toJalali
      */
-    public function toJalali(/* ... */): mixed
+    public function toJalali()
     {
         return null;
     }
     /**
      * toGregorian
      */
-    public function toGregorian(/* ... */): mixed
+    public function toGregorian()
     {
-        return self::jalaliToGregorian($this->year, $this->month, $this->day);
+        return null;
     }
     /**
      * isLeap
      */
-    public function isLeap(/* ... */): mixed
+    public function isLeap(): bool
     {
-        return self::isLeapJalali($jy);
+        return true;
     }
     /**
      * monthLength
      */
-    public function monthLength(/* ... */): mixed
+    public function monthLength()
     {
         return null;
     }
     /**
      * format
      */
-    public function format(/* ... */): mixed
+    public function format()
     {
         return null;
     }

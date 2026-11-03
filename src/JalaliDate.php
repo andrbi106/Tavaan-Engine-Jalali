@@ -107,78 +107,78 @@ final class JalaliDate
     /**
      * addDays
      */
-    public function addDays(/* ... */): mixed
+    public function addDays(int $days): self
     {
-        return $this;
+        return null;
     }
     /**
      * dayName
      */
-    public function dayName(/* ... */): mixed
+    public function dayName(): string
     {
-        return $this;
+        return null;
     }
     /**
      * diffInDays
      */
-    public function diffInDays(/* ... */): mixed
+    public function diffInDays(mixed $other)
     {
-        return $this;
+        return null;
     }
     /**
      * endOfMonth
      */
-    public function endOfMonth(/* ... */): mixed
+    public function endOfMonth()
     {
-        return $this;
+        return null;
     }
     /**
      * fromGregorian
      */
-    public function fromGregorian(/* ... */): mixed
+    public function fromGregorian(int $gy, int $gm, int $gd)
     {
-        return self::gregorianToJalali($gy, $gm, $gd);
+        return null;
     }
     /**
      * isLeap
      */
-    public function isLeap(/* ... */): mixed
+    public function isLeap(): bool
     {
-        return self::isLeapJalali($jy);
+        return true;
     }
     /**
      * now
      */
-    public function now(/* ... */): mixed
+    public function now(): string
     {
-        return $this;
+        return null;
     }
     /**
      * parse
      */
-    public function parse(/* ... */): mixed
+    public function parse(string $date): string
     {
-        return $this;
+        return null;
     }
     /**
      * startOfMonth
      */
-    public function startOfMonth(/* ... */): mixed
+    public function startOfMonth()
     {
-        return $this;
+        return null;
     }
     /**
      * subMonths
      */
-    public function subMonths(/* ... */): mixed
+    public function subMonths(int $months): self
     {
-        return $this;
+        return null;
     }
     /**
      * toGregorian
      */
-    public function toGregorian(/* ... */): mixed
+    public function toGregorian()
     {
-        return self::jalaliToGregorian($this->year, $this->month, $this->day);
+        return null;
     }
 }
