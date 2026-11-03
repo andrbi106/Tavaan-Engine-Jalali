@@ -21,7 +21,7 @@ final class JalaliDate
     ];
 
     /** @var list<string> */
-    public const string SEASON_NAMES = ['بهار', 'تابستان', 'پاییز', 'زمستان'];
+    public const array SEASON_NAMES = ['بهار', 'تابستان', 'پاییز', 'زمستان'];
 
     /**
      * فرمت تاریخ جلالی با pattern.

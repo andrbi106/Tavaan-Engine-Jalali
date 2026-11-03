@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\I18n\Jalali\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tavaan\Testing\TestCase;
 use Tavaan\Engine\I18n\Jalali\JalaliConverter;
 use Tavaan\Engine\I18n\Jalali\JalaliDate;
 
