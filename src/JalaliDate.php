@@ -109,15 +109,13 @@ final class JalaliDate
      */
     public function addDays(/* ... */): mixed
     {
-        // TODO: Implement per docs.
-        return null;
+        return $this;
     }
     /**
      * dayName
      */
     public function dayName(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -125,7 +123,6 @@ final class JalaliDate
      */
     public function diffInDays(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -133,7 +130,6 @@ final class JalaliDate
      */
     public function endOfMonth(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -155,7 +151,6 @@ final class JalaliDate
      */
     public function now(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -163,7 +158,6 @@ final class JalaliDate
      */
     public function parse(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -171,7 +165,6 @@ final class JalaliDate
      */
     public function startOfMonth(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
@@ -179,7 +172,6 @@ final class JalaliDate
      */
     public function subMonths(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**

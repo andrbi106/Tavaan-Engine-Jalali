@@ -16,7 +16,6 @@ final class Clock
      */
     public function utcNow(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -24,7 +23,6 @@ final class Clock
      */
     public function now(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -32,7 +30,6 @@ final class Clock
      */
     public function jalaliNow(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
 }
