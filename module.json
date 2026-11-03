@@ -11,16 +11,17 @@
     }
   },
   "providers": [
-    "Tavaan\\Engine\\I18n\\Jalali\\JalaliDateServiceProvider"
+    "Tavaan\\Engine\\I18n\\Jalali\\JalaliServiceProvider"
   ],
   "requires": {
     "php": ">=8.2",
-    "engines": [
-      "i18n"
-    ]
+    "engines": ["i18n"]
+  },
+  "config": {
+    "file": "config/jalali.php",
+    "key": "jalali"
   },
   "tables": [],
   "commands": [],
-  "docs": "docs/03-engines/jalali.md",
-  "notes": "کد در engines/i18n/src/Jalali (namespace مطابق DOC-070). الگوریتم breaks-based jalaali-js — تطبیق ۱۰۰٪ با intl."
+  "docs": "docs/03-engines/jalali.md"
 }

@@ -2,29 +2,18 @@
 
 declare(strict_types=1);
 
-/*|--------------------------------------------------------------------------
- | Jalali Engine Configuration
- |--------------------------------------------------------------------------
- |
- | پیکربندی موتور jalali — همهٔ کلیدهای مستندشده در `docs/03-engines/jalali.md` بخش «پیکربندی».
- |
- |@see https://github.com/Derogaramin/Tavaan-Doc/blob/main/docs/03-engines/jalali.md
- */
-
 return [
-    /*| پیش‌فرض موتور (driver/store یا حالت فعال) */
-    'default' => env('JALALI_DEFAULT', 'default'),
+    /*| تقویم پیش‌فرض: jalali | gregorian | islamic */
+    'default' => \getenv('TVN_CALENDAR') !== false ? \getenv('TVN_CALENDAR') : 'jalali',
 
-    /*| کلید کش (در صورت استفاده) */
-    'prefix' => env('JALALI_PREFIX', 'jalali:'),
+    /*| اولین روز هفته: 0 = شنبه، 1 = یکشنبه، ... */
+    'first_day_of_week' => 0,
 
-    /*| تنظیمات لاگ */
-    'log' => [
-        'channel' => env('JALALI_LOG_CHANNEL', 'jalali'),
-    ],
+    /*| نمایش نام روز در تقویم */
+    'show_weekdays' => true,
 
-    /*| سایر کلیدها (طبق مستندات) */
-    'options' => [
-        // TODO: کلیدهای اضافی طبق سند §۶ (پیکربندی)
-    ],
+    /*| تبدیل اعداد به فارسی */
+    'persian_digits' => \getenv('TVN_PERSIAN_DIGITS') !== false
+        ? \filter_var(\getenv('TVN_PERSIAN_DIGITS'), \FILTER_VALIDATE_BOOL)
+        : true,
 ];

@@ -4,137 +4,103 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\I18n\Jalali;
 
-use Tavaan\Core\Contracts\Config\RepositoryInterface as Config;
-
 /**
- * JalaliDate — پیاده‌سازی اصلی موتور.
- *
- * @see \Tavaan\Engine\I18n\Jalali\Contracts\JalaliDateInterface
+ * JalaliDate — کار با تاریخ جلالی (فرمت، نام روز/ماه).
  */
-final class JalaliDate implements Contracts\JalaliDateInterface
+final class JalaliDate
 {
+    /** @var list<string> */
+    public const array MONTH_NAMES = [
+        'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+        'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+    ];
+
+    /** @var list<string> */
+    public const array WEEK_DAYS = [
+        'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'
+    ];
+
+    /** @var list<string> */
+    public const string SEASON_NAMES = ['بهار', 'تابستان', 'پاییز', 'زمستان'];
+
     /**
-     * @param Config $config پیکربندی موتور
+     * فرمت تاریخ جلالی با pattern.
+     *
+     * Y: سال ۴ رقمی، y: سال ۲ رقمی
+     * m: ماه ۲ رقمی، n: ماه بدون صفر، M: نام ماه
+     * d: روز ۲ رقمی، j: روز بدون صفر
+     *
+     * @return string
      */
-    public function __construct(
-        private readonly Config $config,
-    ) {
+    public static function format(int $jy, int $jm, int $jd, string $format = 'Y/m/d'): string
+    {
+        $replacements = [
+            'Y' => \sprintf('%04d', $jy),
+            'y' => \sprintf('%02d', $jy % 100),
+            'm' => \sprintf('%02d', $jm),
+            'n' => (string) $jm,
+            'M' => self::monthName($jm),
+            'd' => \sprintf('%02d', $jd),
+            'j' => (string) $jd,
+            'D' => self::weekdayShort($jy, $jm, $jd),
+            'l' => self::weekday($jy, $jm, $jd),
+            'F' => self::seasonName($jm),
+        ];
+        return \strtr($format, $replacements);
+    }
+
+    public static function monthName(int $jm): string
+    {
+        return self::MONTH_NAMES[$jm - 1] ?? '';
+    }
+
+    public static function seasonName(int $jm): string
+    {
+        $season = (int) \ceil($jm / 3);  // 1-4
+        return self::SEASON_NAMES[$season - 1] ?? '';
     }
 
     /**
-     * {@inheritdoc}
+     * نام روز هفته (جلالی) — محاسبه از میلادی.
      */
-    public function now(/* ... */): mixed
+    public static function weekday(int $jy, int $jm, int $jd): string
     {
-        // TODO: پیاده‌سازی now مطابق مستندات (سند §3 API).
-        return null;
+        [$gy, $gm, $gd] = JalaliConverter::jalaliToGregorian($jy, $jm, $jd);
+        $ts = \mktime(12, 0, 0, $gm, $gd, $gy);
+        $dow = (int) \date('w', $ts);  // 0 (Sunday) - 6 (Saturday)
+        return self::WEEK_DAYS[$dow];
+    }
+
+    public static function weekdayShort(int $jy, int $jm, int $jd): string
+    {
+        $full = self::weekday($jy, $jm, $jd);
+        return \mb_substr($full, 0, 2, 'UTF-8');
     }
 
     /**
-     * {@inheritdoc}
+     * تاریخ امروز جلالی.
+     *
+     * @return array{0: int, 1: int, 2: int}
      */
-    public function fromGregorian(/* ... */): mixed
+    public static function today(): array
     {
-        // TODO: پیاده‌سازی fromGregorian مطابق مستندات (سند §3 API).
-        return null;
+        $ts = \time();
+        $gy = (int) \date('Y', $ts);
+        $gm = (int) \date('m', $ts);
+        $gd = (int) \date('d', $ts);
+        return JalaliConverter::gregorianToJalali($gy, $gm, $gd);
     }
 
     /**
-     * {@inheritdoc}
+     * تبدیل timestamp به جلالی.
+     *
+     * @return array{0: int, 1: int, 2: int}
      */
-    public function parse(/* ... */): mixed
+    public static function fromTimestamp(int $timestamp): array
     {
-        // TODO: پیاده‌سازی parse مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function toGregorian(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی toGregorian مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function format(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی format مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addDays(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی addDays مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function subMonths(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی subMonths مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function diffInDays(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی diffInDays مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isLeap(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی isLeap مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function monthName(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی monthName مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function dayName(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی dayName مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function startOfMonth(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی startOfMonth مطابق مستندات (سند §3 API).
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function endOfMonth(/* ... */): mixed
-    {
-        // TODO: پیاده‌سازی endOfMonth مطابق مستندات (سند §3 API).
-        return null;
+        $gy = (int) \date('Y', $timestamp);
+        $gm = (int) \date('m', $timestamp);
+        $gd = (int) \date('d', $timestamp);
+        return JalaliConverter::gregorianToJalali($gy, $gm, $gd);
     }
 }
