@@ -5,45 +5,36 @@ declare(strict_types=1);
 namespace Tavaan\Engine\I18n\Jalali;
 
 /**
- * Jalali — پیاده‌سازی مطابق مستندات.
- *
- * @see docs/03-engines/ (YAML machine-readable block)
+ * Jalali — high-level facade over JalaliConverter.
  */
 final class Jalali
 {
-    /**
-     * toJalali
-     */
-    public function toJalali()
+    public function toJalali(int $gy, int $gm, int $gd): array
     {
-        return null;
+        return JalaliConverter::gregorianToJalali($gy, $gm, $gd);
     }
-    /**
-     * toGregorian
-     */
-    public function toGregorian()
+
+    public function toGregorian(int $jy, int $jm, int $jd): array
     {
-        return null;
+        return JalaliConverter::jalaliToGregorian($jy, $jm, $jd);
     }
-    /**
-     * isLeap
-     */
-    public function isLeap(): bool
+
+    public function isLeap(int $jy): bool
     {
-        return true;
+        // Jalali leap year: (year mod 33 ∈ {1, 5, 9, 13, 17, 22, 26, 30})
+        $mod = $jy % 33;
+        return in_array($mod, [1, 5, 9, 13, 17, 22, 26, 30], true);
     }
-    /**
-     * monthLength
-     */
-    public function monthLength()
+
+    public function monthLength(int $jy, int $jm): int
     {
-        return null;
+        if ($jm <= 6) { return 31; }
+        if ($jm <= 11) { return 30; }
+        return $this->isLeap($jy) ? 30 : 29;
     }
-    /**
-     * format
-     */
-    public function format()
+
+    public function format(int $jy, int $jm, int $jd, string $format = 'Y/m/d'): string
     {
-        return null;
+        return JalaliDate::format($jy, $jm, $jd, $format);
     }
 }

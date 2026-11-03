@@ -5,31 +5,38 @@ declare(strict_types=1);
 namespace Tavaan\Engine\I18n\Jalali;
 
 /**
- * Clock — پیاده‌سازی مطابق مستندات.
- *
- * @see docs/03-engines/ (YAML machine-readable block)
+ * Clock — provides the current time in UTC and Jalali formats.
  */
 final class Clock
 {
-    /**
-     * utcNow
-     */
-    public function utcNow()
+    public function utcNow(): \DateTimeImmutable
     {
-        return null;
+        return new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
     }
-    /**
-     * now
-     */
+
     public function now(): \DateTimeImmutable
     {
         return new \DateTimeImmutable();
     }
-    /**
-     * jalaliNow
-     */
-    public function jalaliNow()
+
+    public function jalaliNow(string $format = 'Y/m/d H:i:s'): string
     {
-        return null;
+        $now = $this->now();
+        $gy = (int) $now->format('Y');
+        $gm = (int) $now->format('m');
+        $gd = (int) $now->format('d');
+        [$jy, $jm, $jd] = JalaliConverter::gregorianToJalali($gy, $gm, $gd);
+        $datePart = JalaliDate::format($jy, $jm, $jd, $format);
+        // Replace time fields if format contains H/i/s
+        $timePart = $now->format('H:i:s');
+        if (str_contains($format, 'H')) {
+            $datePart .= ' ' . $timePart;
+        }
+        return $datePart;
+    }
+
+    public function timestamp(): int
+    {
+        return time();
     }
 }
