@@ -116,21 +116,21 @@ final class JalaliDate
      */
     public function dayName(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * diffInDays
      */
     public function diffInDays(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * endOfMonth
      */
     public function endOfMonth(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * fromGregorian
@@ -151,28 +151,28 @@ final class JalaliDate
      */
     public function now(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * parse
      */
     public function parse(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * startOfMonth
      */
     public function startOfMonth(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * subMonths
      */
     public function subMonths(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
     /**
      * toGregorian

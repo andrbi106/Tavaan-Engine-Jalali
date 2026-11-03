@@ -16,20 +16,20 @@ final class Clock
      */
     public function utcNow(/* ... */): mixed
     {
-        return null;
+        return new \DateTimeImmutable();
     }
     /**
      * now
      */
-    public function now(/* ... */): mixed
+    public function now(): \DateTimeImmutable
     {
-        return null;
+        return new \DateTimeImmutable();
     }
     /**
      * jalaliNow
      */
     public function jalaliNow(/* ... */): mixed
     {
-        return null;
+        return new \DateTimeImmutable();
     }
 }
