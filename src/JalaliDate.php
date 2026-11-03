@@ -103,4 +103,93 @@ final class JalaliDate
         $gd = (int) \date('d', $timestamp);
         return JalaliConverter::gregorianToJalali($gy, $gm, $gd);
     }
+
+    /**
+     * addDays
+     */
+    public function addDays(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * dayName
+     */
+    public function dayName(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * diffInDays
+     */
+    public function diffInDays(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * endOfMonth
+     */
+    public function endOfMonth(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * fromGregorian
+     */
+    public function fromGregorian(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * isLeap
+     */
+    public function isLeap(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * now
+     */
+    public function now(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * parse
+     */
+    public function parse(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * startOfMonth
+     */
+    public function startOfMonth(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * subMonths
+     */
+    public function subMonths(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * toGregorian
+     */
+    public function toGregorian(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
 }
