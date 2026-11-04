@@ -2,6 +2,8 @@
 
 > **تقویم جلالی** — موتور Jalali در فریمورک تَوان
 
+این موتور از کلاس پایهٔ `Engine` (در [Tavaan-Engine-Core](https://github.com/andrbi106/Tavaan-Engine-Core)) ارث می‌برد.
+
 ## مشخصات
 
 | فیلد | مقدار |
@@ -11,48 +13,60 @@
 | عنوان فارسی | تقویم جلالی |
 | نسخه | `0.1.0` |
 | namespace | `Tavaan\Engine\I18n\Jalali` |
-| نوع | `engine` |
+| کلاس موتور | `Tavaan\Engine\I18n\Jalali\JalaliEngine` |
+| Facade |  |
 
-## کلاس‌های اصلی
+## کلاس موتور
 
-- `src/Clock.php`
-- `src/Jalali.php`
-- `src/JalaliConverter.php`
-- `src/JalaliDate.php`
-- `src/JalaliServiceProvider.php`
+```php
+namespace Tavaan\Engine\I18n\Jalali;
+
+use Tavaan\EngineCore\Engine as BaseEngine;
+use Tavaan\EngineCore\Contracts\EngineManifestInterface;
+
+final class JalaliEngine extends BaseEngine
+{
+    public function __construct(EngineManifestInterface $manifest)
+    {
+        parent::__construct($manifest);
+    }
+
+    public function register(ContainerInterface $container): void
+    {
+        parent::register($container);
+        // bindingهای اختصاصی موتور
+    }
+
+    public function boot(): void
+    {
+        parent::boot();
+    }
+}
+```
+
+**فایل:** `src/JalaliEngine.php`
+
+## وابستگی‌ها
+
+**موتورهای مورد‌نیاز:** `i18n`
 
 ## Service Providerها
 
 - `Tavaan\Engine\I18n\Jalali\JalaliServiceProvider`
 
-## وابستگی‌ها
+## سه درگاه ارتباط با سایر موتورها
 
-**موتورهای مورد‌نیاز:**
-
-- `i18n`
-
-## پیکربندی
-
-- فایل پیکربندی: `config/jalali.php`
-- کلید: `jalali`
+| درگاه | الگو | متدهای convenience |
+|---|---|---|
+| Container | pull-based DI | `make()`, `bound()` |
+| Events | pub/sub | `dispatch()`, `listen()` |
+| EngineBus | point-to-point RPC | `call()`, `offer()` |
 
 ## نصب
 
 ```bash
 git clone https://github.com/andrbi106/Tavaan-Engine-Jalali.git
 ```
-
-این موتور بخشی از فریمورک تَوان است و معمولاً به‌صورت مستقیم نصب نمی‌شود،
-بلکه توسط [Tavaan-Core](https://github.com/andrbi106/Tavaan-Core) مدیریت می‌شود.
-
-## روابط با سایر مخازن
-
-| مخزن | نقش |
-|---|---|
-| **`andrbi106/Tavaan-Engine-Jalali`** (این مخزن) | موتور Jalali |
-| `andrbi106/Tavaan-Engine-Core` | ساختار پایه + درگاه ارتباط موتورها |
-| `andrbi106/Tavaan-Core` | اسکلت اپلیکیشن + همهٔ موتورها |
-| `Derogaramin/Tavaan-Framework` | فریمورک مادر (monorepo) |
 
 ## مجوز
 
